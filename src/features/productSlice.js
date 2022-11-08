@@ -8,6 +8,14 @@ export const fetchProdcuts = createAsyncThunk(
     return data
   }
 )
+export const fetchSingleProdcut = createAsyncThunk(
+  "products/fetchSingleProdcut",
+  async (productId) => {
+    const response = await fetch(`http://localhost:5000/products/${productId}`)
+    const data = await response.json()
+    return data
+  }
+)
 
 const initialState = {
   products: [],
@@ -25,6 +33,15 @@ const productSlice = createSlice({
       return { ...state, products: payload }
     },
     [fetchProdcuts.rejected]: (state, { payload }) => {
+      console.log("promise rejected")
+    },
+    [fetchSingleProdcut.pending]: (state, { payload }) => {
+      console.log("promise pending")
+    },
+    [fetchSingleProdcut.fulfilled]: (state, { payload }) => {
+      return { ...state, singleProduct: payload }
+    },
+    [fetchSingleProdcut.rejected]: (state, { payload }) => {
       console.log("promise rejected")
     },
   },

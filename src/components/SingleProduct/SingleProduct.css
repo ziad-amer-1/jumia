@@ -1,6 +1,46 @@
 .single-product {
   display: flex;
   padding: 20px;
+  position: relative;
+}
+.single-product .overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.single-product .img-container {
+  width: 40%;
+  max-width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  position: relative;
+}
+.single-product .img-container .close-icon {
+  position: absolute;
+  top: 4%;
+  right: 2%;
+  color: black;
+  font-size: 30px;
+  cursor: pointer;
+}
+.single-product .img-container img {
+  width: 70%;
+}
+.single-product .img-container h3 {
+  position: absolute;
+  top: 4%;
+  left: 2%;
 }
 .single-product > * {
   background-color: white;
@@ -20,6 +60,33 @@
   width: 100%;
   cursor: zoom-in;
   border-bottom: 1px solid #ededed;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border: none;
+}
+.single-product__left__left .share h3 {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-top: 1px solid #ededed;
+  padding-block: 15px;
+  margin-block: 15px 7px;
+}
+.single-product__left__left .social-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.single-product__left__left .social-icons > * {
+  border: 1px solid #282828;
+  padding: 7px;
+  border-radius: 50%;
+}
+.single-product__left__left .social-icons > *:hover {
+  border-color: #ff9900;
+}
+.single-product__left__left .social-icons > *:hover > * {
+  color: #ff9900;
 }
 .single-product__left__right {
   width: 60%;
@@ -40,6 +107,8 @@
   display: flex;
   gap: 3px;
   align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ededed;
 }
 
 .single-product__left__right .addToCartButton span {
@@ -78,7 +147,32 @@
   padding: 2px;
   border-radius: 2px;
 }
-
+.single-product__left__right .offers {
+  margin-top: 15px;
+  padding-block: 15px;
+  border-block: 1px solid #ededed;
+}
+.single-product__left__right .promotions h3 {
+  text-transform: uppercase;
+  padding-bottom: 15px;
+  font-weight: 500;
+  font-size: 0.825rem;
+}
+.single-product__left__right .promotions li {
+  cursor: pointer;
+  color: #264996;
+  font-size: 0.825rem;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+.single-product__left__right .promotions li:hover {
+  text-decoration: underline;
+}
+.single-product__left__right .promotions li img {
+  width: 20px;
+  margin-right: 10px;
+}
 .single-product__right {
   flex: 1;
 }

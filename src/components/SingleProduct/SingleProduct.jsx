@@ -1,43 +1,77 @@
 import React from "react"
 import "./SingleProduct.css"
 import JumiaExpressLogo from "../../assets/jexpress-logo.png"
-import { AiOutlineCaretDown } from "react-icons/ai"
+import { AiOutlineCaretDown, AiOutlineClose } from "react-icons/ai"
 import { FaFacebookF } from "react-icons/fa"
 import { BsTwitter } from "react-icons/bs"
 import { MdAddShoppingCart } from "react-icons/md"
 import { BsStarHalf, BsStarFill } from "react-icons/bs"
 import { formatCurrency } from "../../utils/formatCurrency"
+import JumiaIcon from "../../assets/jumia-icon-small.png"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { fetchSingleProdcut } from "../../features/productSlice"
+import { useParams } from "react-router-dom"
+import LoadingAnimation from "../LoadingAnimation"
+import { useState } from "react"
 
 function SingleProduct() {
-  const singleProduct = {
-    id: 1,
-    title: "iPhone 9",
-    description: "An apple mobile which is nothing like apple",
-    price: 549,
-    discountPercentage: 12.96,
-    rating: 4.69,
-    stock: 94,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
-    images: [
-      "https://dummyjson.com/image/i/products/1/1.jpg",
-      "https://dummyjson.com/image/i/products/1/2.jpg",
-      "https://dummyjson.com/image/i/products/1/3.jpg",
-      "https://dummyjson.com/image/i/products/1/4.jpg",
-      "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
-    ],
+  const [toggleOverlay, setToggleOverlay] = useState(false)
+  const { productId } = useParams()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchSingleProdcut(productId))
+  }, [])
+
+  const singleProduct = useSelector((state) => state.product.singleProduct)
+
+  if (!Object.keys(singleProduct).length) {
+    return <LoadingAnimation />
   }
 
   return (
     <div className="single-product">
+      {toggleOverlay && (
+        <div
+          className="overlay-container"
+          onClick={(e) => {
+            setToggleOverlay(false)
+          }}
+        >
+          <div
+            className="img-container"
+            onClick={(e) => {
+              e.stopPropagation()
+            }}
+          >
+            <div className="close-icon" onClick={() => setToggleOverlay(false)}>
+              <AiOutlineClose />
+            </div>
+            <h3>Product Image</h3>
+            <img src={singleProduct.thumbnail} alt="single product thumbnail" />
+          </div>
+        </div>
+      )}
+
       <div className="single-product__left">
         <div className="single-product__left__left">
-          <img src={singleProduct.thumbnail} className="product-img" alt="" />
+          <img
+            onClick={() => setToggleOverlay(true)}
+            src={singleProduct.thumbnail}
+            className="product-img"
+            alt=""
+          />
           <div className="share">
-            <h2>share this product</h2>
-            <FaFacebookF />
-            <BsTwitter />
+            <h3>share this product</h3>
+            <div className="social-icons">
+              <div className="social-icon">
+                <FaFacebookF />
+              </div>
+              <div className="social-icon">
+                <BsTwitter />
+              </div>
+            </div>
           </div>
         </div>
         <div className="single-product__left__right">
@@ -68,6 +102,29 @@ function SingleProduct() {
           <button className="addToCartButton main-btn">
             <MdAddShoppingCart fontSize={25} /> <span>Add To Cart</span>{" "}
           </button>
+          <div className="offers">
+            <b>4</b> offers starting from{" "}
+            <b>{formatCurrency(singleProduct.price)}</b>
+          </div>
+          <div className="promotions">
+            <h3>promotions</h3>
+            <ul>
+              <li>
+                <img src={JumiaIcon} alt="jumia icon" />6 months installments,
+                0% interest, 0% down payment and 0% purchase fees with valU.
+              </li>
+              <li>
+                <img src={JumiaIcon} alt="jumia icon" />
+                Use "GAM15" at checkout to get 15% Cash back on all gaming
+                vouchers with a maximum discount of 25EGP
+              </li>
+              <li>
+                <img src={JumiaIcon} alt="jumia icon" />
+                Your landline bill is available now, pay it from here in
+                seconds!
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className="single-product__right">

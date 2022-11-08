@@ -15,6 +15,7 @@ import {
 import { BiHeart } from "react-icons/bi"
 import { FiShoppingBag } from "react-icons/fi"
 import { BsChatLeftDots } from "react-icons/bs"
+import { Link } from 'react-router-dom'
 
 function Header() {
   const [isAccountActive, setIsAccountActive] = useState(false)
@@ -87,9 +88,9 @@ function Header() {
         <div className="w-3"></div>
       </div>
       <div className="header__header">
-        <div className="header__header__logo">
+        <Link to='/' className="header__header__logo">
           <img src={JumiaLogo} alt="Jumia Logo" />
-        </div>
+        </Link>
         <div className="header__header__search">
           <div className="header__header__search--input">
             <span className="search-icon">

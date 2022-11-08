@@ -30,6 +30,9 @@ import jumiaAd_9 from "../../assets/jumia-ad-9.png"
 import jumiaAd_10 from "../../assets/jumia-ad-10.png"
 import { useSelector, useDispatch } from "react-redux"
 import { fetchProdcuts } from "../../features/productSlice"
+import { formatCurrency } from '../../utils/formatCurrency'
+import { Link } from 'react-router-dom' 
+import LoadingAnimation from "../LoadingAnimation"
 
 function MainSection() {
   const [contentOnHoverOne, setContentOnHoverOne] = useState(false)
@@ -1110,10 +1113,12 @@ function MainSection() {
         <SliderComponent6Slides>
           {products?.map((product, index) => {
             return (
-              <div key={index} className="single-product-container">
+              <Link to={`products/${product.id}`} key={index} className="single-product-container">
+                <div className="price-top-right">-{product.discountPercentage}%</div>
                 <img src={product.thumbnail} alt="" />
-                <h3>{product.title}</h3>
-              </div>
+                <h3 title={product.title}>{product.title}</h3>
+                <p className="single-product-price">{formatCurrency(product.price)}</p>
+              </Link>
             )
           })}
         </SliderComponent6Slides>

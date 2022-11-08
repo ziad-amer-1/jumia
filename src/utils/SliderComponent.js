@@ -8,8 +8,8 @@ export function SliderComponent({ children, isResponsive = true }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
+    speed: 5000,
+    autoplaySpeed: 3000,
     cssEase: "ease-in-out",
   }
   const settingsWithResponsive = {

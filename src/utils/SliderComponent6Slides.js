@@ -15,7 +15,6 @@ export function SliderComponent6Slides({ children }) {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
         },
       },
       {
