@@ -1,3 +1,6 @@
+.header__header {
+  z-index: 999999;
+}
 .header__banner {
   position: relative;
   display: flex;

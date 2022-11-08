@@ -45,6 +45,7 @@
 .single-product > * {
   background-color: white;
   border-radius: 3px;
+  z-index: 1;
 }
 .single-product__left {
   flex: 3;

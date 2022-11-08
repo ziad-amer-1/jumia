@@ -3,12 +3,12 @@ import Slider from "react-slick"
 
 export function SliderComponent({ children, isResponsive = true }) {
   const settingsWithoutResponsive = {
-    dots: false,
+    dots: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 5000,
+    speed: 1000,
     autoplaySpeed: 3000,
     cssEase: "ease-in-out",
   }
